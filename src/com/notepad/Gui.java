@@ -1,7 +1,8 @@
 package com.notepad;
 
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -10,10 +11,17 @@ public class Gui {
     JFrame frame;
     JTextArea textarea;
     JScrollPane scrollPane;
+    JMenuBar menubar;
+    JMenu menuFile,menuEdit,menuView;
+    JMenuItem inew,iopen,isave,isaveas,iexit;
+
+    Menu_Func menuFunc=new Menu_Func(this);
 
     public Gui() {
         styleScrollBars();
         createWindow();
+        createMenu();
+        createSubmenu();
         createTextarea();
 
         frame.add(scrollPane);
@@ -37,6 +45,52 @@ public class Gui {
         frame.setIconImage(image.getImage());
     }
 
+    public void createMenu(){
+        menubar=new JMenuBar();
+        frame.setJMenuBar(menubar);
+
+        menuFile=new JMenu("File");
+        menuEdit=new JMenu("Edit");
+        menuView=new JMenu("View");
+
+        menubar.add(menuFile);
+        menubar.add(menuEdit);
+        menubar.add(menuView);
+    }
+
+    public void createSubmenu(){
+
+        inew=new JMenuItem("New");
+        inew.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                menuFunc.newClick();
+            }
+        });
+        menuFile.add(inew);
+
+        iopen=new JMenuItem("Open");
+        iopen.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                menuFunc.openClick();
+            }
+        });
+        menuFile.add(iopen);
+
+        isave=new JMenuItem("Save");
+        menuFile.add(isave);
+
+        isaveas=new JMenuItem("Save as");
+        isaveas.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                menuFunc.saveAsClick();
+            }
+        });
+        menuFile.add(isaveas);
+
+        iexit=new JMenuItem("Exit");
+        menuFile.add(iexit);
+    }
+
     public void createTextarea() {
         textarea = new JTextArea();
         textarea.setLineWrap(true);
@@ -46,4 +100,5 @@ public class Gui {
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
     }
+
 }
