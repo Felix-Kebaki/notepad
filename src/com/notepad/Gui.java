@@ -77,6 +77,11 @@ public class Gui {
         menuFile.add(iopen);
 
         isave=new JMenuItem("Save");
+        isave.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                menuFunc.saveClick();
+            }
+        });
         menuFile.add(isave);
 
         isaveas=new JMenuItem("Save as");
@@ -88,6 +93,11 @@ public class Gui {
         menuFile.add(isaveas);
 
         iexit=new JMenuItem("Exit");
+        iexit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                menuFunc.exitClick();
+            }
+        });
         menuFile.add(iexit);
     }
 
