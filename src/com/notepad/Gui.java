@@ -9,19 +9,28 @@ import javax.swing.*;
 public class Gui {
 
     JFrame frame;
+    //TEXTAREA
     JTextArea textarea;
     JScrollPane scrollPane;
+    //MENU
     JMenuBar menubar;
     JMenu menuFile,menuEdit,menuView;
+    //FILE ITEM
     JMenuItem inew,iopen,isave,isaveas,iexit;
+    //EDIT ITEM
+    JMenuItem iwordwrapper,iAerial,iTimesRoman,iComicsan,i8,i12,i16,i20,i24,i28;
+    JMenu isetFont;
+    JMenu isetSize;
 
     Menu_Func menuFunc=new Menu_Func(this);
+    Edit_Func editFunc=new Edit_Func(this);
 
     public Gui() {
         styleScrollBars();
         createWindow();
         createMenu();
-        createSubmenu();
+        createFilemenu();
+        createEditmenu();
         createTextarea();
 
         frame.add(scrollPane);
@@ -58,7 +67,7 @@ public class Gui {
         menubar.add(menuView);
     }
 
-    public void createSubmenu(){
+    public void createFilemenu(){
 
         inew=new JMenuItem("New");
         inew.addActionListener(new ActionListener() {
@@ -101,10 +110,58 @@ public class Gui {
         menuFile.add(iexit);
     }
 
+    public void createEditmenu(){
+        iwordwrapper=new JMenuItem("Word wrap:(Off)");
+        menuEdit.add(iwordwrapper);
+
+        //set font
+        isetFont=new JMenu("Font");
+
+        iAerial=new JMenuItem("Aerial");
+        isetFont.add(iAerial);
+
+        iComicsan=new JMenuItem("Comic Sans");
+        isetFont.add(iComicsan);
+
+        iComicsan=new JMenuItem("Consolas");
+        isetFont.add(iComicsan);
+
+        iTimesRoman=new JMenuItem("Times New Roman");
+        isetFont.add(iTimesRoman);
+
+        menuEdit.add(isetFont);
+
+        //set size
+        isetSize=new JMenu("Size");
+
+        i8=new JMenuItem("8");
+        isetSize.add(i8);
+
+        i12=new JMenuItem("12");
+        isetSize.add(i12);
+
+        i16=new JMenuItem("16");
+        isetSize.add(i16);
+
+        i20=new JMenuItem("20");
+        isetSize.add(i20);
+
+        i24=new JMenuItem("24");
+        isetSize.add(i24);
+
+        i28=new JMenuItem("28");
+        isetSize.add(i28);
+
+        menuEdit.add(isetSize);
+    }
+
+
+
     public void createTextarea() {
         textarea = new JTextArea();
         textarea.setLineWrap(true);
         textarea.setWrapStyleWord(true);
+        textarea.setFont(new Font("Consolas",Font.PLAIN,12));
         textarea.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         scrollPane = new JScrollPane(textarea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
