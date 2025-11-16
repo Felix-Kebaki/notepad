@@ -9,21 +9,25 @@ import javax.swing.*;
 public class Gui {
 
     JFrame frame;
-    //TEXTAREA
+    // TEXTAREA
     JTextArea textarea;
     JScrollPane scrollPane;
-    //MENU
+    // MENU
     JMenuBar menubar;
-    JMenu menuFile,menuEdit,menuView;
-    //FILE ITEM
-    JMenuItem inew,iopen,isave,isaveas,iexit;
-    //EDIT ITEM
-    JMenuItem iwordwrapper,iAerial,iTimesRoman,iComicsan,i8,i12,i16,i20,i24,i28;
-    JMenu isetFont;
-    JMenu isetSize;
+    JMenu menuFile, menuEdit, menuView;
+    // FILE ITEM
+    JMenuItem inew, iopen, isave, isaveas, iexit;
+    // EDIT ITEM
+    JMenuItem iwordwrapper, iAerial, iTimesRoman, iComicsan, iConsolas, iCorbel, i8, i12, i16, i20, i24, i28;
+    JMenu isetFont, isetSize, isetStyle;
+    // STYLE EDIT
+    JMenuItem iregular, iitalics, ibold;
 
-    Menu_Func menuFunc=new Menu_Func(this);
-    Edit_Func editFunc=new Edit_Func(this);
+    Menu_Func menuFunc = new Menu_Func(this);
+    Edit_Func editFunc = new Edit_Func(this);
+
+    public int fontSize = 12;
+    public String font = "Consolas";
 
     public Gui() {
         styleScrollBars();
@@ -54,114 +58,157 @@ public class Gui {
         frame.setIconImage(image.getImage());
     }
 
-    public void createMenu(){
-        menubar=new JMenuBar();
+    public void createMenu() {
+        menubar = new JMenuBar();
         frame.setJMenuBar(menubar);
 
-        menuFile=new JMenu("File");
-        menuEdit=new JMenu("Edit");
-        menuView=new JMenu("View");
+        menuFile = new JMenu("File");
+        menuEdit = new JMenu("Edit");
+        menuView = new JMenu("View");
 
         menubar.add(menuFile);
         menubar.add(menuEdit);
         menubar.add(menuView);
     }
 
-    public void createFilemenu(){
+    public void createFilemenu() {
 
-        inew=new JMenuItem("New");
+        inew = new JMenuItem("New");
         inew.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 menuFunc.newClick();
             }
         });
         menuFile.add(inew);
 
-        iopen=new JMenuItem("Open");
+        iopen = new JMenuItem("Open");
         iopen.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 menuFunc.openClick();
             }
         });
         menuFile.add(iopen);
 
-        isave=new JMenuItem("Save");
+        isave = new JMenuItem("Save");
         isave.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 menuFunc.saveClick();
             }
         });
         menuFile.add(isave);
 
-        isaveas=new JMenuItem("Save as");
+        isaveas = new JMenuItem("Save as");
         isaveas.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 menuFunc.saveAsClick();
             }
         });
         menuFile.add(isaveas);
 
-        iexit=new JMenuItem("Exit");
+        iexit = new JMenuItem("Exit");
         iexit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 menuFunc.exitClick();
             }
         });
         menuFile.add(iexit);
     }
 
-    public void createEditmenu(){
-        iwordwrapper=new JMenuItem("Word wrap:(Off)");
+    public void createEditmenu() {
+        iwordwrapper = new JMenuItem("Word wrap:(Off)");
         menuEdit.add(iwordwrapper);
 
-        //set font
-        isetFont=new JMenu("Font");
+        // set font
+        isetFont = new JMenu("Font");
 
-        iAerial=new JMenuItem("Aerial");
+        iAerial = new JMenuItem("Aerial");
+        iAerial.setActionCommand("Aerial");
+        iAerial.addActionListener(editFunc.setFontListener);
         isetFont.add(iAerial);
 
-        iComicsan=new JMenuItem("Comic Sans");
+        iComicsan = new JMenuItem("Comic Sans");
+        iComicsan.setActionCommand("Comic Sans");
+        iComicsan.addActionListener(editFunc.setFontListener);
         isetFont.add(iComicsan);
 
-        iComicsan=new JMenuItem("Consolas");
-        isetFont.add(iComicsan);
+        iConsolas = new JMenuItem("Consolas");
+        iConsolas.setActionCommand("Consolas");
+        iConsolas.addActionListener(editFunc.setFontListener);
+        isetFont.add(iConsolas);
 
-        iTimesRoman=new JMenuItem("Times New Roman");
+        iTimesRoman = new JMenuItem("Times New Roman");
+        iTimesRoman.setActionCommand("Times New Roman");
+        iTimesRoman.addActionListener(editFunc.setFontListener);
         isetFont.add(iTimesRoman);
+
+        iCorbel = new JMenuItem("Corbel");
+        iCorbel.setActionCommand("Corbel");
+        iCorbel.addActionListener(editFunc.setFontListener);
+        isetFont.add(iCorbel);
 
         menuEdit.add(isetFont);
 
-        //set size
-        isetSize=new JMenu("Size");
+        // set size
+        isetSize = new JMenu("Size");
 
-        i8=new JMenuItem("8");
+        i8 = new JMenuItem("8");
+        i8.setActionCommand("8");
+        i8.addActionListener(editFunc.setSizeListener);
         isetSize.add(i8);
 
-        i12=new JMenuItem("12");
+        i12 = new JMenuItem("12");
+        i12.setActionCommand("12");
+        i12.addActionListener(editFunc.setSizeListener);
         isetSize.add(i12);
 
-        i16=new JMenuItem("16");
+        i16 = new JMenuItem("16");
+        i16.setActionCommand("16");
+        i16.addActionListener(editFunc.setSizeListener);
         isetSize.add(i16);
 
-        i20=new JMenuItem("20");
+        i20 = new JMenuItem("20");
+        i20.setActionCommand("20");
+        i20.addActionListener(editFunc.setSizeListener);
         isetSize.add(i20);
 
-        i24=new JMenuItem("24");
+        i24 = new JMenuItem("24");
+        i24.setActionCommand("24");
+        i24.addActionListener(editFunc.setSizeListener);
         isetSize.add(i24);
 
-        i28=new JMenuItem("28");
+        i28 = new JMenuItem("28");
+        i28.setActionCommand("28");
+        i28.addActionListener(editFunc.setSizeListener);
         isetSize.add(i28);
 
         menuEdit.add(isetSize);
+
+        // setStyle
+        isetStyle = new JMenu("Style");
+
+        iregular = new JMenuItem("Regular");
+        iregular.setActionCommand("PLAIN");
+        iregular.addActionListener(editFunc.setStyleListener);
+        isetStyle.add(iregular);
+
+        iitalics = new JMenuItem("Italics");
+        iitalics.setActionCommand("ITALIC");
+        iitalics.addActionListener(editFunc.setStyleListener);
+        isetStyle.add(iitalics);
+
+        ibold = new JMenuItem("Bold");
+        ibold.setActionCommand("BOLD");
+        ibold.addActionListener(editFunc.setStyleListener);
+        isetStyle.add(ibold);
+
+        menuEdit.add(isetStyle);
     }
-
-
 
     public void createTextarea() {
         textarea = new JTextArea();
         textarea.setLineWrap(true);
         textarea.setWrapStyleWord(true);
-        textarea.setFont(new Font("Consolas",Font.PLAIN,12));
+        textarea.setFont(new Font("Consolas", Font.PLAIN, 12));
         textarea.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         scrollPane = new JScrollPane(textarea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
