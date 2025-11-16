@@ -18,10 +18,13 @@ public class Gui {
     // FILE ITEM
     JMenuItem inew, iopen, isave, isaveas, iexit;
     // EDIT ITEM
-    JMenuItem iwordwrapper, iAerial, iTimesRoman, iComicsan, iConsolas, iCorbel, i8, i12, i16, i20, i24, i28;
+    JMenuItem iAerial, iTimesRoman, iComicsan, iConsolas, iCorbel, i8, i12, i16, i20, i24, i28;
     JMenu isetFont, isetSize, isetStyle;
     // STYLE EDIT
     JMenuItem iregular, iitalics, ibold;
+    // VIEW EDIT
+    JMenu izoom,itheme;
+    JMenuItem iwordwrapper,izoomIn,izoomOut,izoomDefault,idark,ilight,isystemTheme;
 
     Menu_Func menuFunc = new Menu_Func(this);
     Edit_Func editFunc = new Edit_Func(this);
@@ -35,6 +38,7 @@ public class Gui {
         createMenu();
         createFilemenu();
         createEditmenu();
+        createViewmenu();
         createTextarea();
 
         frame.add(scrollPane);
@@ -115,8 +119,6 @@ public class Gui {
     }
 
     public void createEditmenu() {
-        iwordwrapper = new JMenuItem("Word wrap:(Off)");
-        menuEdit.add(iwordwrapper);
 
         // set font
         isetFont = new JMenu("Font");
@@ -202,6 +204,40 @@ public class Gui {
         isetStyle.add(ibold);
 
         menuEdit.add(isetStyle);
+    }
+
+    public void createViewmenu(){
+        //word wrap
+        iwordwrapper = new JMenuItem("Word wrap:(On)");
+        menuView.add(iwordwrapper);
+
+        //zoom
+        izoom=new JMenu("Zoom");
+
+        izoomIn=new JMenuItem("Zoom in");
+        izoom.add(izoomIn);
+
+        izoomOut=new JMenuItem("Zoom out");
+        izoom.add(izoomOut);
+
+        izoomDefault=new JMenuItem("Restore default zoom");
+        izoom.add(izoomDefault);
+
+        menuView.add(izoom);
+
+        //theme
+        itheme=new JMenu("Theme");
+
+        ilight=new JMenuItem("Light");
+        itheme.add(ilight);
+
+        idark=new JMenuItem("Dark");
+        itheme.add(idark);
+
+        isystemTheme=new JMenuItem("Use system setting");
+        itheme.add(isystemTheme);
+
+        menuView.add(itheme);
     }
 
     public void createTextarea() {
