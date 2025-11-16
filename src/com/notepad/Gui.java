@@ -11,7 +11,7 @@ public class Gui {
     JFrame frame;
     // TEXTAREA
     JTextArea textarea;
-    JScrollPane scrollPane;
+    JScrollPane scrollPaneVertical,scrollPaneHorizontal;
     // MENU
     JMenuBar menubar;
     JMenu menuFile, menuEdit, menuView;
@@ -28,9 +28,11 @@ public class Gui {
 
     Menu_Func menuFunc = new Menu_Func(this);
     Edit_Func editFunc = new Edit_Func(this);
+    View_Func viewFunc=new View_Func(this);
 
     public int fontSize = 12;
     public String font = "Consolas";
+    public boolean wordWrapOn=true;
 
     public Gui() {
         styleScrollBars();
@@ -41,7 +43,7 @@ public class Gui {
         createViewmenu();
         createTextarea();
 
-        frame.add(scrollPane);
+        frame.add(scrollPaneVertical);
         frame.setVisible(true);
     }
 
@@ -208,7 +210,12 @@ public class Gui {
 
     public void createViewmenu(){
         //word wrap
-        iwordwrapper = new JMenuItem("Word wrap:(On)");
+        iwordwrapper = new JMenuItem("Word wrap: (ON)");
+        iwordwrapper.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                viewFunc.wordWrapFunc();
+            }
+        });
         menuView.add(iwordwrapper);
 
         //zoom
@@ -246,9 +253,9 @@ public class Gui {
         textarea.setWrapStyleWord(true);
         textarea.setFont(new Font("Consolas", Font.PLAIN, 12));
         textarea.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-        scrollPane = new JScrollPane(textarea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+        scrollPaneVertical = new JScrollPane(textarea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setBorder(BorderFactory.createEmptyBorder());
+        scrollPaneVertical.setBorder(BorderFactory.createEmptyBorder());
     }
 
 }
