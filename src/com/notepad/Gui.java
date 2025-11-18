@@ -66,6 +66,8 @@ public class Gui {
 
     public void createMenu() {
         menubar = new JMenuBar();
+        menubar.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
+        menubar.setBackground(new Color(232,232,232));
         frame.setJMenuBar(menubar);
 
         menuFile = new JMenu("File");
@@ -236,23 +238,30 @@ public class Gui {
         itheme=new JMenu("Theme");
 
         ilight=new JMenuItem("Light");
+        ilight.setActionCommand("light");
+        ilight.addActionListener(viewFunc.selectThemeListener);
         itheme.add(ilight);
 
         idark=new JMenuItem("Dark");
+        idark.setActionCommand("dark");
+        idark.addActionListener(viewFunc.selectThemeListener);
         itheme.add(idark);
 
         isystemTheme=new JMenuItem("Use system setting");
+        isystemTheme.setActionCommand("system");
+        isystemTheme.addActionListener(viewFunc.selectThemeListener);
         itheme.add(isystemTheme);
 
         menuView.add(itheme);
     }
+
 
     public void createTextarea() {
         textarea = new JTextArea();
         textarea.setLineWrap(true);
         textarea.setWrapStyleWord(true);
         textarea.setFont(new Font("Consolas", Font.PLAIN, 12));
-        textarea.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        textarea.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         scrollPaneVertical = new JScrollPane(textarea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPaneVertical.setBorder(BorderFactory.createEmptyBorder());
