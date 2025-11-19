@@ -30,7 +30,8 @@ public class Gui {
     Edit_Func editFunc = new Edit_Func(this);
     View_Func viewFunc=new View_Func(this);
 
-    public int fontSize = 12;
+    public int defaultFontsize=12;
+    public int currentFontsize=defaultFontsize;
     public String font = "Consolas";
     public boolean wordWrapOn=true;
 
@@ -224,12 +225,18 @@ public class Gui {
         izoom=new JMenu("Zoom");
 
         izoomIn=new JMenuItem("Zoom in");
+        izoomIn.setActionCommand("zoomin");
+        izoomIn.addActionListener(viewFunc.zoomListener);
         izoom.add(izoomIn);
 
         izoomOut=new JMenuItem("Zoom out");
+        izoomOut.setActionCommand("zoomout");
+        izoomOut.addActionListener(viewFunc.zoomListener);
         izoom.add(izoomOut);
 
         izoomDefault=new JMenuItem("Restore default zoom");
+        izoomDefault.setActionCommand("system");
+        izoomDefault.addActionListener(viewFunc.zoomListener);
         izoom.add(izoomDefault);
 
         menuView.add(izoom);
@@ -260,7 +267,7 @@ public class Gui {
         textarea = new JTextArea();
         textarea.setLineWrap(true);
         textarea.setWrapStyleWord(true);
-        textarea.setFont(new Font("Consolas", Font.PLAIN, 12));
+        textarea.setFont(new Font("Consolas", Font.PLAIN, defaultFontsize));
         textarea.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         scrollPaneVertical = new JScrollPane(textarea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);

@@ -1,6 +1,7 @@
 package com.notepad;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionListener;
 
 import javax.swing.JScrollPane;
@@ -38,7 +39,7 @@ public class View_Func {
     ActionListener selectThemeListener = e -> {
         switch (e.getActionCommand()) {
             case "light":
-                gui.menubar.setBackground(new Color(232,232,232));
+                gui.menubar.setBackground(new Color(232, 232, 232));
                 gui.menuFile.setForeground(Color.black);
                 gui.menuEdit.setForeground(Color.black);
                 gui.menuView.setForeground(Color.black);
@@ -58,6 +59,28 @@ public class View_Func {
                 break;
             default:
                 System.out.println("Default response");
+        }
+    };
+
+    public void setFontSize(int size) {
+        Font f = gui.textarea.getFont();
+        gui.textarea.setFont(new Font(f.getName(), f.getStyle(), size));
+        gui.currentFontsize = size;
+    }
+
+    ActionListener zoomListener=e->{
+        switch (e.getActionCommand()) {
+            case "zoomin":
+                setFontSize(gui.currentFontsize+4);
+                break;
+            case "zoomout":
+                setFontSize(gui.currentFontsize-4);
+                break;
+            case "system":
+                setFontSize(gui.defaultFontsize);
+                break;
+            default:
+                break;
         }
     };
 }
